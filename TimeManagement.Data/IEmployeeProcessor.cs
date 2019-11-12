@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TimeManagement.Data
 {
-    interface IEmployeeProcessor
+    public interface IEmployeeProcessor
     {
         void Create(Employee employee);
 

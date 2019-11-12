@@ -13,10 +13,12 @@ namespace TimeManagement.Service.Controllers
     public class EmployeeController : ControllerBase
     {
         private readonly IEmployeeProvider employeeProvider;
+        private readonly IEmployeeProcessor employeeProcessor;
 
-        public EmployeeController(IEmployeeProvider employeeProvider)
+        public EmployeeController(IEmployeeProvider employeeProvider, IEmployeeProcessor employeeProcessor)
         {
-            
+            this.employeeProvider = employeeProvider;
+            this.employeeProcessor = employeeProcessor;
         }
 
         // GET: api/Employee
@@ -35,8 +37,9 @@ namespace TimeManagement.Service.Controllers
 
         // POST: api/Employee
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Employee employee)
         {
+            employeeProcessor.Create(employee);
         }
 
         // PUT: api/Employee/5
