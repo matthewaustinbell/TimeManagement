@@ -9,6 +9,7 @@ namespace TimeManagement.Data
     {
         private readonly string connectionString;
 
+
         public EmployeeProvider(string connectionString)
         {
             this.connectionString = connectionString;

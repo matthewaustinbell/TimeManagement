@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
 using System.Threading.Tasks;
@@ -29,8 +30,10 @@ namespace TimeManagement
         {
             services.AddMvc();
 
-            services.AddTransient<IEmployeeProvider>(f => new EmployeeProvider(@"Persist Security Info = False; Integrated Security= true;
-            Initial Catalog = TimeManagement; server = DESKTOP-ES1H53N\matt bell"));
+            var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json");
+            var config = builder.Build();
+
+            services.AddTransient<IEmployeeProvider>(f => new EmployeeProvider(config["ConnectionString:TimeManagement"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
