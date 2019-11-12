@@ -28,12 +28,21 @@ namespace TimeManagement.Data
 
         public void Delete(int employeeId)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException(); 
         }
 
         public void Update(Employee employee)
         {
-            throw new NotImplementedException();
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Execute(
+                    "UPDATE Employee SET first_name = @FirstName, last_name = @LastName, address=@Adress, home_phone=@HomePhone, cell_phone=@CellPhone WHERE id=@Id",
+                    new
+                    {
+                        employee.Id, employee.FirstName, employee.LastName, employee.Address, employee.HomePhone,
+                        employee.CellPhone
+                    });
+            }
         }
     }
 }

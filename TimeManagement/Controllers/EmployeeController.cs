@@ -44,8 +44,10 @@ namespace TimeManagement.Service.Controllers
 
         // PUT: api/Employee/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] Employee employee)
         {
+            employee.Id = id;
+            employeeProcessor.Update(employee);
         }
 
         // DELETE: api/ApiWithActions/5
