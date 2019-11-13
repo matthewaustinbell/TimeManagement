@@ -24,11 +24,16 @@ namespace TimeManagement.Data
             }
         }
 
-        
+
 
         public void Delete(int employeeId)
         {
-            throw new NotImplementedException(); 
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Execute(
+                    "DELETE FROM Employee WHERE id=@Id",
+                    new {Id = employeeId});
+            }
         }
 
         public void Update(Employee employee)

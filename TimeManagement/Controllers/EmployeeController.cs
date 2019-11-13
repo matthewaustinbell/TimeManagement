@@ -54,6 +54,7 @@ namespace TimeManagement.Service.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            employeeProcessor.Delete(id);
         }
     }
 }
